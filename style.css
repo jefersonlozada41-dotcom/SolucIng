@@ -1,0 +1,653 @@
+/* ==========================================================================
+   1. VARIABLES Y RESETEO MODERNO
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* Paleta oficial refinada */
+    --solucing-dark-blue: #0b0e1e;
+    --solucing-royal-blue: #140E8F;
+    --solucing-sky-blue: #2393EF;
+    --solucing-light-blue: #38bdf8;
+    
+    /* Fondos oscuros fluidos */
+    --bg-main: #070913;
+    --bg-card: #111628;
+    --bg-card-hover: #171e36;
+    --bg-input: #1a2238;
+    --border-color: #1e293b;
+    --border-accent: rgba(35, 147, 239, 0.3);
+
+    /* Textos */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Fuentes */
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+/* ==========================================================================
+   CARRUSEL PARA 5 ELEMENTOS: PROPORCIÓN EXACTA Y AJUSTADO BAJO EL HEADER
+   ========================================================================== */
+.carrusel-contenedor {
+    width: 100%;
+    overflow: hidden; /* Oculta los elementos que quedan fuera de la vista */
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    
+    /* Mantiene la ventana visual adaptada a la proporción horizontal de tus banners */
+    aspect-ratio: 3.0 / 1;
+    
+    margin-top: 0px;
+    margin-bottom: 35px; 
+     margin-top: 0 !important;
+    padding-top: 0 !important;
+    motion-rotation: 70px ;
+}
+
+.carrusel-pista {
+    display: flex;
+    width:500%; /* Ahora es 500% porque maneja 5 imágenes en línea horizontal */
+    height: 100%;
+    animation: cambioCincoBanners 45s infinite ease-in-out; /* 25 segundos para repartir el ciclo */
+}
+
+.carrusel-slide {
+    width: 20%; /* Cada una de las 5 imágenes toma exactamente un quinto (20%) de la pista */
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.carrusel-slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* 'contain' evita que el logo circular o los banners se corten o distorsionen */
+    object-fit: contain; 
+}
+
+/* 
+   ANIMACIÓN RECALCULADA PARA 5 SLIDES:
+   Muestra cada elemento por ~4 segundos y se desplaza fluidamente en intervalos de 20%
+*/
+@keyframes cambioCincoBanners {
+    0%, 25% {
+        transform: translateX(0); /* Muestra Imagen Logo */
+    }
+    25%, 50% {
+        transform: translateX(-20%); /* Muestra Banner 1 */
+    }
+    50%, 75% {
+        transform: translateX(-40%); /* Muestra Banner 2 */
+    }
+    75%, 100% {
+        transform: translateX(-60%); /* Muestra Banner 3 */
+    }
+}
+
+/* Ajustes responsivos para celulares o tablets */
+@media (max-width: 850px) {
+    .carrusel-contenedor {
+        border-radius: 8px;
+        margin-top: 5px;
+        margin-bottom: 25px;
+    }
+}
+
+/* ==========================================================================
+   2. HEADER & NAVEGACIÓN
+   ========================================================================== */
+.contenedor {
+  display: flex; /* Permite colocar la barra lateral y el contenido lado a lado */
+  align-items: flex-start; /* Necesario para que sticky funcione correctamente */
+}
+
+.logo-encabezado {
+    display: flex;
+    width: 75px; /* Ahora es 500% porque maneja 5 imágenes en línea horizontal */
+    height: 75px;
+}
+
+
+/* Contenedor flexible para alinear la barra y el contenido */
+.layout-principal {
+  display: flex;
+  align-items: flex-start; /* Crucial para que el sticky reconozca el inicio */
+}
+
+/* Toda la pared/barra izquierda que bajará al hacer scroll */
+.barra-izquierda {
+  position: sticky;
+  top: 0; /* Se fija exactamente al llegar al borde superior de la pantalla */
+  width: 280px; /* Ancho deseado para la barra */
+  min-height: 100vh; /* Permite cubrir todo el alto disponible */
+  background-color: #2c3e50; /* Estilo de la barra/pared */
+  color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Área principal para generar la altura necesaria para hacer scroll */
+.seccion-principal {
+  flex: 1;
+  padding: 20px;
+}/* Contenedor flexible para alinear la barra y el contenido */
+.layout-principal {
+  display: flex;
+  align-items: flex-start; /* Crucial para que el sticky reconozca el inicio */
+}
+
+/* Toda la pared/barra izquierda que bajará al hacer scroll */
+.barra-izquierda {
+  position: sticky;
+  top: 0; /* Se fija exactamente al llegar al borde superior de la pantalla */
+  width: 280px; /* Ancho deseado para la barra */
+  min-height: 100vh; /* Permite cubrir todo el alto disponible */
+  background-color: #2c3e50; /* Estilo de la barra/pared */
+  color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Área principal para generar la altura necesaria para hacer scroll */
+.seccion-principal {
+  flex: 1;
+  padding: 20px;
+}
+.sidebar-izquierda {
+  position: sticky;
+  top: 20px; /* Distancia desde la parte superior de la pantalla al bajar */
+  width: 250px; /* Ancho de tu panel lateral */
+  /* Puedes agregar alto máximo si el contenido del panel es muy largo */
+  max-height: calc(100vh - 40px);
+  overflow-y: auto; 
+}
+   .main-header {
+    background-color: rgba(11, 14, 30, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1300px;
+    margin-left: 0;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+}
+
+.brand-logo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.logo-main {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    gap: 5px;
+}
+
+.logo-sub {
+    font-size: 0.7rem;
+    color: var(--solucing-sky-blue);
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.top-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.top-nav a:hover {
+    color: var(--solucing-sky-blue);
+}
+
+.top-nav .btn-nav {
+    background-color: var(--solucing-royal-blue);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.top-nav .btn-nav:hover {
+    background-color: var(--solucing-sky-blue);
+    color: #000;
+}
+
+/* ==========================================================================
+   3. ESTRUCTURA PRINCIPAL (LAYOUT)
+   ========================================================================== */
+.main-layout {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 35px;
+}
+
+/* --- Aside / Sidebar --- */
+.sidebar-area {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.search-box-container {
+    background-color: var(--bg-card);
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.search-row {
+    display: flex;
+    align-items: center;
+}
+
+.search-row input {
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.search-row button {
+    background: var(--solucing-royal-blue);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-links-container {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.menu-links-container h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.menu-links-container ul {
+    list-style: none;
+}
+
+.menu-links-container li {
+    margin-bottom: 8px;
+}
+
+.menu-links-container a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.menu-links-container a:hover {
+    background-color: var(--bg-card-hover);
+    color: var(--solucing-sky-blue);
+}
+
+.sidebar-banner {
+    background: linear-gradient(135deg, var(--solucing-royal-blue), var(--solucing-dark-blue));
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-accent);
+}
+
+.sidebar-banner p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.sidebar-banner .link-contact {
+    color: var(--solucing-sky-blue);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   4. CUERPO DE CONTENIDOS
+   ========================================================================== */
+.main-body-area {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: rgba(35, 147, 239, 0.1);
+    color: var(--solucing-sky-blue);
+    border: 1px solid var(--border-accent);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.hero-section h1 {
+    font-family: var(--font-heading);
+    font-size: 2.3rem;
+    line-height: 1.25;
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+}
+
+/* Grilla de Tarjetas */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 22px;
+    border-radius: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-accent);
+}
+
+.card-icon {
+    color: var(--solucing-sky-blue);
+    margin-bottom: 12px;
+}
+
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Cajas Detalladas */
+.content-section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.detailed-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--solucing-sky-blue);
+    padding: 20px 24px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.detailed-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+
+.detailed-box p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Banner Destacado */
+.highlight-banner {
+    background: linear-gradient(90deg, #10162e 0%, #0d1224 100%);
+    border: 1px solid var(--border-accent);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.highlight-banner h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.highlight-banner p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Tabla */
+.subtitle-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-card);
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.product-table th, .product-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-table th {
+    background-color: #171f38;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+.product-table tr:last-child td {
+    border-bottom: none;
+}
+
+.product-table td {
+    color: var(--text-secondary);
+}
+
+/* Formulario */
+.contact-section {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 35px;
+    border-radius: 12px;
+}
+
+.form-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 12px 16px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--solucing-sky-blue);
+}
+
+.btn-submit {
+    background-color: var(--solucing-royal-blue);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--solucing-sky-blue);
+    color: black;
+}
+
+/* Footer */
+.footer-area {
+    border-top: 1px solid var(--border-color);
+    padding: 25px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 50px;
+}
+
+/* Adaptabilidad Responsiva */
+@media (max-width: 850px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    .top-nav {
+        display: none;
+    }
+    .form-group-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ESTILOS DEL VIDEO (Añadir al final del archivo CSS) */
+.video-card {
+    background-color: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 100%;
+    margin: 20px auto; /* Centra la tarjeta horizontalmente si hay espacio */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Mantiene la relación de aspecto 16:9 */
+    height: 0;
+    background-color: #000;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.video-info {
+    padding: 20px;
+    color: #f8fafc;
+}
+
+.video-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #f1f5f9;
+}
+
+.video-description {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
